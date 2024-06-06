@@ -1,0 +1,44 @@
+package com.learnmicroservices.accounts.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.learnmicroservices.accounts.dto.CustomerDto;
+import com.learnmicroservices.accounts.services.IAccountService;
+
+import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
+
+@RestController
+@RequestMapping("api/accounts")
+@Slf4j
+public class AccountController {
+	
+	@Autowired
+	private IAccountService accountService;
+	
+	@PostMapping("/create")
+	public String createAccount(@RequestBody @Valid CustomerDto customerDto) {
+		log.info("AccountController :: createAccount");
+		accountService.createAccount(customerDto);
+		return "Account Created Successfully";
+	}
+	
+	@GetMapping("/fetch")
+	public CustomerDto fetchAccountDetails(String mobileNumber) {
+		log.info("AccountController :: fetchAccountDetails");
+		return accountService.fetchAccount(mobileNumber);
+	}
+	
+	@GetMapping("/update")
+	public boolean updateAccountDetails(@RequestBody CustomerDto customerDto) {
+		log.info("AccountController :: fetchAccountDetails");
+		return accountService.updateAccouunt(customerDto);
+	}
+	
+
+}

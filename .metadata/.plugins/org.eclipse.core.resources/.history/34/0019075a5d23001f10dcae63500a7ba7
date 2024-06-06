@@ -1,0 +1,20 @@
+package com.learnmicroservices.accounts.dto;
+
+
+import lombok.Data;
+
+//input request and output response 
+@Data
+public class CustomerDto {
+	
+
+	private String name;
+	
+	private String email;
+
+	private String mobileNumber;
+	
+	private AccountDto accountDto;
+
+
+}

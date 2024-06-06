@@ -1,0 +1,5 @@
+package com.learnmicroservices.loans.dto;
+
+public class LoanDto {
+
+}

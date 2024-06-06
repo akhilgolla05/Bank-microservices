@@ -1,0 +1,43 @@
+
+spring:
+  application:
+    name: loans
+  #DB config
+  datasource:
+    url: jdbc:h2:mem:loansdb
+    username: admin
+    password: admin
+  jpa:
+    hibernate:
+      ddl-auto: update
+  #enable h2-console
+  h2:
+    console:
+      enabled: true
+
+#change the port  
+server:
+  port: 9005
+  
+#enable actuator endpoints 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  #enable info endpoint to see project info
+  info:
+    env:
+      enabled: true
+
+#project information
+info:
+  app:
+    name: loans
+    description: loans microservice
+    version: 1.0.0
+  location: Hyderabad
+  
+  
+# to allow h2 work on cloud
+

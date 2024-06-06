@@ -1,0 +1,27 @@
+spring.application.name=accounts
+
+#change the port
+server.port=9003
+
+#DB config
+spring.datasource.url = jdbc:h2:mem:accountsdb
+spring.datasource.username = admin
+spring.datasource.password = admin
+spring.jpa.hibernate.ddl-auto= update
+
+#enable h2-console
+spring.h2.console.enabled=true
+
+# to allow h2 work on cloud
+
+#enable actuator endpoints 
+#management.endpoints.web.exposure.exclude=*
+
+#project information
+info.app.name = accounts
+info.app.description = accounts microservice
+info.app.version = 1.0.0
+info.location = Hyderabad
+
+#enable info endpoint to see project info
+management.info.env.enabled=true

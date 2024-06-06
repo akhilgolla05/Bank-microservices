@@ -1,0 +1,5 @@
+package com.learnmicroservices.accounts.entity;
+
+public class Account {
+
+}

@@ -1,0 +1,5 @@
+package com.learnmicroservices.loans.controllers;
+
+public class LoanController {
+
+}

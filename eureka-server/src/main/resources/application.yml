@@ -1,0 +1,34 @@
+# Conversion to YAML from Properties formar report
+# Warnings:
+# - The yaml file had comments which are lost in the refactoring!
+spring:
+  application:
+    name: eureka-server
+server:
+  port: 9002
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        
+#by default is is true - 
+  #by default, eureka makes it's server itself client (with value = true), so we dont want server to behave as client
+ 
+# for all micro-services above 2 values are true, since those are not servers - the above 2 properties no need to define also, by default exists
+
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    
+    #overriding defaultZone(magic port : 8761) for eureka-server
+    service-url:
+      defaultZone: http://localhost:9002/eureka/
+  instance:
+    prefer-ip-address: true
+
+    
+#by default, eureka-server hits(re-run)  for every 60-sec - to check services status 
+
+#checks status of services(client) every - 30sec

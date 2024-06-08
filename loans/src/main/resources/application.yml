@@ -15,7 +15,7 @@ spring:
     console:
       enabled: true
 
-#change the port  
+#change the port  - u can run in another port number(while running change the port - eurekaServer)
 server:
   port: 9005
   
@@ -40,4 +40,18 @@ info:
   
   
 # to allow h2 work on cloud
+
+
+#eruka-server config
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    
+    #overriding defaultZone(magic port : 8761) for eureka-server
+    service-url:
+      defaultZone: http://localhost:9002/eureka/
+  instance:
+    prefer-ip-address: true
 

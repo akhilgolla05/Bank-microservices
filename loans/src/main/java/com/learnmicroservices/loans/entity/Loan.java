@@ -3,6 +3,8 @@ package com.learnmicroservices.loans.entity;
 import org.hibernate.annotations.GeneratorType;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,6 +27,10 @@ public class Loan {
 	private String mobileNumber;
 	private String loanNumber;
 	private String loanType;
+	
+	@Enumerated(EnumType.STRING) // if we specify, this enum data will be stored as ENUM type(String)
+	private LoanType lType;
+	
 	private int totalLoan;
 	private int amountPaid;
 	private int outstandingAmount;

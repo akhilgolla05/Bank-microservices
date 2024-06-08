@@ -1,0 +1,5 @@
+package com.learnmicroservices.loans.entity;
+
+public enum LoanType {
+
+}

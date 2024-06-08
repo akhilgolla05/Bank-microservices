@@ -1,0 +1,5 @@
+package com.learnmicroservices.loans.exceptions;
+
+public class LoanAlreadyExistsException extends Exception {
+
+}

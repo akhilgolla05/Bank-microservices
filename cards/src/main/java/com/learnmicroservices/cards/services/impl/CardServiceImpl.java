@@ -42,6 +42,7 @@ public class CardServiceImpl implements ICardService{
 				throw new CardAlreadyExistsException("Card Already Exists with given Mobile Number : "+mobileNumber);	
 		}
 		createNewCard(mobileNumber);
+		log.info("CardServiceImpl :: createCard - card created successfully");
 		
 	}
 	
@@ -88,6 +89,8 @@ public class CardServiceImpl implements ICardService{
 		dbCard.setAvailableAmount(cardDto.getAvailableAmount());
 		
 		cardRepository.save(dbCard);
+		
+		log.info("CardServiceImpl :: updateCard - updated successfully");
 		return true;
 	}
 
@@ -99,6 +102,8 @@ public class CardServiceImpl implements ICardService{
 		.orElseThrow(()-> new ResourceNotFoundException("Card Not Found with given Mobile Number : "+mobileNumber));
 		
 		cardRepository.deleteById(dbCard.getCardId());
+		
+		log.info("CardServiceImpl :: deleteCard - deleted successfully");
 		return true;
 	}
 
@@ -106,6 +111,7 @@ public class CardServiceImpl implements ICardService{
 	@Override
 	public CardHolderDetailsDto getCardHolderDetails(String mobileNumber) {
 		
+		log.info("CardServiceImpl :: getCardHolderDetails");
 		Card card = cardRepository.findByMobileNumber(mobileNumber)
 				.orElseThrow(()-> new ResourceNotFoundException("Card Not Found with given Mobile Number : "+ mobileNumber));
 		

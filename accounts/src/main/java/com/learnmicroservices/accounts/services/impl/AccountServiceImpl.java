@@ -54,11 +54,12 @@ public class AccountServiceImpl implements IAccountService{
 		//create account
 		accountRepository.save(createAccount(dbCustomer));
 		
-		log.info("AccountServiceImpl :: createAccount - Account successfully created");
+		log.info("AccountServiceImpl :: createAccount - Account saved to DB");
 		
 	}
 
 	private Account createAccount(Customer dbCustomer) {
+		
 		
 		Account account = new Account();
 		account.setCustomerId(dbCustomer.getCustomerId());
@@ -76,19 +77,20 @@ public class AccountServiceImpl implements IAccountService{
 	@Override
 	public CustomerDto fetchAccount(String mobileNumber) {
 		
+		log.info("AccountServiceImpl :: fetchAccount");
 		Customer customer = customerRepository.findByMobileNumber(mobileNumber)
 				.orElseThrow(()-> new ResourceNotFoundException("Customer Not Found with Mobile Number : "+mobileNumber));
 		
 		Account account = accountRepository.findByCustomerId(customer.getCustomerId())
 			.orElseThrow(()-> new ResourceNotFoundException("Account Not Found with Mobile Number : "+ mobileNumber));
 				
-		
+		log.info("AccountServiceImpl :: fetchAccount - successfully fetched customer and account information");
 		AccountDto accountDto = new AccountDto();
 		BeanUtils.copyProperties(account, accountDto);
 		CustomerDto customerDto = new CustomerDto();
 		BeanUtils.copyProperties(customer, customerDto);
 		customerDto.setAccountDto(accountDto);
-		
+		log.info("AccountServiceImpl :: fetchAccount - set the values for CustomerDto");
 		return customerDto;
 		
 		
@@ -96,7 +98,7 @@ public class AccountServiceImpl implements IAccountService{
 
 	@Override
 	public boolean updateAccouunt(CustomerDto customerDto) {
-		
+		log.info("AccountServiceImpl :: updateAccouunt");
 		boolean isUpdated = false;
 		
 		AccountDto accountDto = customerDto.getAccountDto();
@@ -118,7 +120,7 @@ public class AccountServiceImpl implements IAccountService{
 			
 			customerRepository.save(customer);
 			accountRepository.save(account);
-			
+			log.info("AccountServiceImpl :: updateAccouunt - updated successfully");
 			isUpdated = true;
 		}else {
 			throw new RuntimeException("Update Operation Failed...");
@@ -129,7 +131,7 @@ public class AccountServiceImpl implements IAccountService{
 
 	@Override
 	public boolean deleteAccount(String mobileNumber) {
-		
+		log.info("AccountServiceImpl :: deleteAccount");
 		Customer customer = customerRepository.findByMobileNumber(mobileNumber)
 				.orElseThrow(()-> new ResourceNotFoundException("Customer Not Found!"));
 		
@@ -137,7 +139,7 @@ public class AccountServiceImpl implements IAccountService{
 			// u have to do soft-delete - make User inactive(updating status value)
 		accountRepository.deleteByCustomerId(customer.getCustomerId());
 		customerRepository.deleteById(customer.getCustomerId());;
-	
+		log.info("AccountServiceImpl :: deleteAccount - deleted successfully");
 		return true;
 	}
 

@@ -32,3 +32,14 @@ eureka:
 #by default, eureka-server hits(re-run)  for every 60-sec - to check services status 
 
 #checks status of services(client) every - 30sec
+
+
+
+#enabling tracing pattern for distributed transactions   
+logging:
+  pattern:
+    level: '%5p [%X {traceId:-}, %X {spanId:-}, ${spring.application.name:}, ]'
+    
+    # generate logs to a file in specific folder
+  file:
+    name: eureka-server_logs/eureka-server.log

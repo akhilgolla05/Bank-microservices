@@ -32,6 +32,7 @@ public class AccountController {
 	public String createAccount(@RequestBody @Valid CustomerDto customerDto) {
 		log.info("AccountController :: createAccount");
 		accountService.createAccount(customerDto);
+		log.info("AccountController : Account Created Successfully");
 		return "Account Created Successfully";
 	}
 	

@@ -53,4 +53,14 @@ eureka:
       defaultZone: http://localhost:9002/eureka/
   instance:
     prefer-ip-address: true
+    
+    
+#enabling tracing pattern for distributed transactions   
+logging:
+  pattern:
+    level: '%5p [%X {traceId:-}, %X {spanId:-}, ${spring.application.name:}, ]'
+    
+    # generate logs to a file in specific folder
+  file:
+    name: cards_logs/cards.log
 

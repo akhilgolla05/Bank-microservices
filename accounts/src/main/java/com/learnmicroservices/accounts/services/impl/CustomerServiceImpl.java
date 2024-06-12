@@ -18,8 +18,11 @@ import com.learnmicroservices.accounts.repository.AccountRepository;
 import com.learnmicroservices.accounts.repository.CustomerRepository;
 import com.learnmicroservices.accounts.services.ICustomerService;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 @Service
+@Slf4j
 public class CustomerServiceImpl implements ICustomerService{
 	
 	@Autowired
@@ -38,6 +41,7 @@ public class CustomerServiceImpl implements ICustomerService{
 	@Override
 	public CustomerDetailsDto fetchCustomerDetailsDto(String mobileNumber) {
 		
+		log.info("CustomerServiceImpl :: fetchCustomerDetailsDto");
 		Customer customer = customerRepository.findByMobileNumber(mobileNumber)
 		.orElseThrow(()-> new ResourceNotFoundException("Customer Not Found with mobile Number : " + mobileNumber));
 		
@@ -53,7 +57,7 @@ public class CustomerServiceImpl implements ICustomerService{
 		
 		CustomerDetailsDto customerDetailsDto = preparingCustomerDetailsDto(customer, account, loanDto, cardDto);
 		
-	
+		log.info("CustomerServiceImpl :: fetchCustomerDetailsDto - successfully fetched customer details");
 		return customerDetailsDto;
 	}
 

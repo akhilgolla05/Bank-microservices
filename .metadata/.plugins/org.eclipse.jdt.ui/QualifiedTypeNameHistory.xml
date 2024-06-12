@@ -55,9 +55,9 @@
     <fullyQualifiedTypeName name="com.learnmicroservices.cards.exceptions.ResourceNotFoundException"/>
     <fullyQualifiedTypeName name="com.learnmicroservices.cards.clients.LoansFeignClient"/>
     <fullyQualifiedTypeName name="com.learnmicroservices.cards.clients.AccountFeignClient"/>
-    <fullyQualifiedTypeName name="com.learnmicroservices.cards.dto.CardHolderDetailsDto"/>
     <fullyQualifiedTypeName name="ch.qos.logback.core.joran.util.beans.BeanUtil"/>
     <fullyQualifiedTypeName name="org.springframework.beans.BeanUtils"/>
     <fullyQualifiedTypeName name="com.learnmicroservices.cards.dto.LoanDto"/>
     <fullyQualifiedTypeName name="com.learnmicroservices.cards.dto.CustomerDto"/>
+    <fullyQualifiedTypeName name="com.learnmicroservices.cards.dto.CardHolderDetailsDto"/>
 </qualifiedTypeNameHistroy>

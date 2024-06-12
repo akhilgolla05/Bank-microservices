@@ -1,5 +1,0 @@
-package com.learnmicroservices.cards.repository;
-
-public interface CardsRepository {
-
-}

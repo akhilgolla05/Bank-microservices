@@ -27,7 +27,7 @@ public class LoanController {
 	
 	@PostMapping("/create")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	private String createLoan(@RequestParam String mobileNumber) {
+	public String createLoan(@RequestParam String mobileNumber) {
 		
 		log.info("LoanController :: createLoan");
 		loanService.createLoan(mobileNumber);
@@ -35,14 +35,14 @@ public class LoanController {
 	}
 	
 	@GetMapping("/fetch")
-	private LoanDto fetchLoan(@RequestParam String mobileNumber) {
+	public LoanDto fetchLoan(@RequestParam String mobileNumber) {
 		
 		log.info("LoanController :: fetchLoan");
 		return loanService.fetchLoan(mobileNumber);
 	}
 	
 	@PutMapping("/update")
-	private boolean updateLoan(@RequestBody LoanDto loanDto) {
+	public boolean updateLoan(@RequestBody LoanDto loanDto) {
 		
 		log.info("LoanController :: updateLoan");
 		return loanService.updateLoan(loanDto);
@@ -50,7 +50,7 @@ public class LoanController {
 	}
 	
 	@DeleteMapping("/delete")
-	private boolean deleteLoan(@RequestParam String mobileNumber) {
+	public boolean deleteLoan(@RequestParam String mobileNumber) {
 		
 		log.info("LoanController :: deleteLoan");
 		return loanService.deleteLoan(mobileNumber);

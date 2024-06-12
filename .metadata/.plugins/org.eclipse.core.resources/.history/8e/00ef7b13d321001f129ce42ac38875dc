@@ -1,5 +1,0 @@
-package com.learnmicroservices.cards.dto;
-
-public class CardDto {
-
-}

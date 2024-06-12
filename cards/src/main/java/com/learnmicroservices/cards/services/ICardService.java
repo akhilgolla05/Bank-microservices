@@ -1,6 +1,7 @@
 package com.learnmicroservices.cards.services;
 
 import com.learnmicroservices.cards.dto.CardDto;
+import com.learnmicroservices.cards.dto.CardHolderDetailsDto;
 import com.learnmicroservices.cards.entity.Card;
 
 public interface ICardService {
@@ -13,5 +14,7 @@ public interface ICardService {
 	boolean updateCard(CardDto cardDto);
 	
 	boolean deleteCard(String mobileNumber);
+	
+	CardHolderDetailsDto getCardHolderDetails(String mobileNumber);
 
 }

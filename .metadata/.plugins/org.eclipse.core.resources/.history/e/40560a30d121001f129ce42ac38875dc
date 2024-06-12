@@ -1,5 +1,0 @@
-package com.learnmicroservices.accounts.services;
-
-public interface IAccountService {
-
-}

@@ -1,5 +1,0 @@
-package com.learnmicroservices.loans.repository;
-
-public interface LoanRepository {
-
-}

@@ -6,7 +6,12 @@ import java.util.Random;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import com.learnmicroservices.cards.clients.AccountFeignClient;
+import com.learnmicroservices.cards.clients.LoansFeignClient;
 import com.learnmicroservices.cards.dto.CardDto;
+import com.learnmicroservices.cards.dto.CardHolderDetailsDto;
+import com.learnmicroservices.cards.dto.CustomerDto;
+import com.learnmicroservices.cards.dto.LoanDto;
 import com.learnmicroservices.cards.entity.Card;
 import com.learnmicroservices.cards.exceptions.CardAlreadyExistsException;
 import com.learnmicroservices.cards.exceptions.ResourceNotFoundException;
@@ -23,6 +28,10 @@ import lombok.extern.slf4j.Slf4j;
 public class CardServiceImpl implements ICardService{
 	
 	private CardRepository cardRepository;
+	
+	private AccountFeignClient accountFeignClient;
+	
+	private LoansFeignClient loansFeignClient;
 
 	@Override
 	public void createCard(String mobileNumber) {
@@ -91,6 +100,34 @@ public class CardServiceImpl implements ICardService{
 		
 		cardRepository.deleteById(dbCard.getCardId());
 		return true;
+	}
+
+	
+	@Override
+	public CardHolderDetailsDto getCardHolderDetails(String mobileNumber) {
+		
+		Card card = cardRepository.findByMobileNumber(mobileNumber)
+				.orElseThrow(()-> new ResourceNotFoundException("Card Not Found with given Mobile Number : "+ mobileNumber));
+		
+		
+		LoanDto laonDto =  loansFeignClient.fetchLoan(mobileNumber);
+		
+		CustomerDto customerDto =  accountFeignClient.fetchAccountDetails(mobileNumber);
+		
+		CardHolderDetailsDto cardHolderDetailsDto = new CardHolderDetailsDto();
+		BeanUtils.copyProperties(card, cardHolderDetailsDto);
+		
+		CustomerDto theCustomerDto = new CustomerDto();
+		theCustomerDto.setEmail(customerDto.getEmail());
+		theCustomerDto.setMobileNumber(mobileNumber);
+		theCustomerDto.setName(customerDto.getName());
+		
+		cardHolderDetailsDto.setCustomerDto(theCustomerDto);
+		
+		cardHolderDetailsDto.setLoanDto(laonDto);
+		
+		
+		return cardHolderDetailsDto;
 	}
 	
 	

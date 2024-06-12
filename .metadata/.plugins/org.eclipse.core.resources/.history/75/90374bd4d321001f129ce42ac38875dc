@@ -1,5 +1,0 @@
-package com.learnmicroservices.cards.controllers;
-
-public class CardController {
-
-}

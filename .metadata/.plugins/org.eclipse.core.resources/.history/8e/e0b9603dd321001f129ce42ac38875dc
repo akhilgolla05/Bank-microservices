@@ -1,5 +1,0 @@
-package com.learnmicroservices.loans.entity;
-
-public class Loan {
-
-}

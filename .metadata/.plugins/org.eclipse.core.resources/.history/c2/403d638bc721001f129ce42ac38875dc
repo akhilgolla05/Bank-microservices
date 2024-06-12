@@ -1,5 +1,0 @@
-package com.learnmicroservices.accounts.repository;
-
-public interface CustomerRepository {
-
-}

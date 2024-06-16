@@ -29,6 +29,16 @@ management:
   info:
     env:
       enabled: true
+      
+ #each and Every operation will be tracked and send to zipkin
+  tracing:
+    sampling:
+      probability: 1.0
+      
+  #Microservices talks to zipkin URL via this URL, this is the end-point given in their documentation.
+  zipkin:
+    tracing:
+      endpoint: "http://localhost:9411/api/v2/spans"
 
 #project information
 info:
@@ -66,4 +76,19 @@ logging:
     # generate logs to a file in specific folder
   file:
     name: accounts_logs/accounts.log
+  logback:
+    rollingpolicy:
+      file-name-pattern: accounts_logs/accounts.%d{yyyy-MM-dd}.%i.log
+    max-file-size: 1MB
+      
+#logging:
+#  level:
+#    root: INFO
+#  file:
+#    name: /path/to/your/logfile.log
+#  logback:
+#    rollingpolicy:
+#      file-name-pattern: /path/to/your/logfile.%d{yyyy-MM-dd}.%i.log
+#    max-file-size: 10MB
+#    max-history: 30
 

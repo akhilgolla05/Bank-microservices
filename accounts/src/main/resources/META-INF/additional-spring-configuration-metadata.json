@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "logging.logback.max-file-size",
+  "type": "java.lang.String",
+  "description": "A description for 'logging.logback.max-file-size'"
+}]}

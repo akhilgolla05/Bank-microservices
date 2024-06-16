@@ -1,5 +1,0 @@
-package com.learnmicroservices.cards.exceptions;
-
-public class ResourceNotFoundException {
-
-}

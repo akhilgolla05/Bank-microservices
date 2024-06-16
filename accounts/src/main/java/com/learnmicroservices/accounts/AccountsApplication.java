@@ -19,7 +19,7 @@ public class AccountsApplication {
 	}
 	
 	/*
-	 * if u want to maintain the same tract-id across all the services for a request, then 
+	 * if u want to maintain the same trace-id across all the services for a request, then 
 	use the dependency called feign-micrometer.
 	
 	and also we need add the bean object(MicrometerCapability), used for auto-config purpose

@@ -1,0 +1,108 @@
+spring:
+  application:
+    name: gatewayserver
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          # all the endpoint under gateway gets enabled - 
+          #if u dont want default routes, u can disable below 2 properties - since we customized below
+          enabled: true
+          lower-case-service-id: true
+      
+      #RewritePath GatewayFilter Factory
+      routes:
+      - id: accounts-service
+        uri: lb://ACCOUNTS #application name
+        predicates:
+        - Path=/learn-microservices/accounts/**
+        filters:
+        - RewritePath=/learn-microservices/accounts/?(?<segment>.*), /$\{segment}
+        
+        #cards
+      - id: cards-service
+        uri: lb://CARDS #application name
+        predicates:
+        - Path=/learn-microservices/cards/**
+        filters:
+        - RewritePath=/learn-microservices/cards/?(?<segment>.*), /$\{segment}
+        
+        #loans
+      - id: loans-service
+        uri: lb://LOANS #application name
+        predicates:
+        - Path=/learn-microservices/loans/**
+        filters:
+        - RewritePath=/learn-microservices/loans/?(?<segment>.*), /$\{segment}
+      
+      
+      
+server:
+  port: 9006
+  
+#enable actuator endpoints 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  #enable info endpoint to see project info
+  info:
+    env:
+      enabled: true
+      
+ #each and Every operation will be tracked and send to zipkin
+  tracing:
+    sampling:
+      probability: 1.0
+      
+  #Microservices talks to zipkin URL via this URL, this is the end-point given in their documentation.
+  zipkin:
+    tracing:
+      endpoint: "http://localhost:9411/api/v2/spans"
+  
+  #to enable gateway end-point
+  endpoint:
+    gateway:
+      enabled: true
+
+#project information
+info:
+  app:
+    name: gateway
+    description: Gateway microservice
+    version: 1.0.0
+  location: Hyderabad
+
+
+
+#Eureka-client configuration      
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    
+    #overriding defaultZone(magic port : 8761) for eureka-server
+    service-url:
+      defaultZone: http://localhost:9002/eureka/
+  instance:
+    prefer-ip-address: true
+
+
+#enabling tracing pattern for distributed transactions   
+logging:
+  pattern:
+    level: '%5p [%X {traceId:-}, %X {spanId:-}, ${spring.application.name:}, ]'
+    
+    # generate logs to a file in specific folder
+  file:
+    name: gateway_logs/gateway.log
+  logback:
+    rollingpolicy:
+      file-name-pattern: gateway_logs/gateway.%d{yyyy-MM-dd}.%i.log
+
+
+
+
+  
+

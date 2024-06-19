@@ -19,6 +19,10 @@ spring:
     openfeign:
       circuitbreaker:
         enabled: true
+  profiles:
+    active: "dev"
+  config:
+    import: "configserver:http://localhost:9001/"
 
 
 
@@ -60,19 +64,18 @@ info:
 
 
 
-
 #Eureka-client configuration
        
-eureka:
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    
-    #overriding defaultZone(magic port : 8761) for eureka-server
-    service-url:
-      defaultZone: http://localhost:9002/eureka/
-  instance:
-    prefer-ip-address: true
+#eureka:
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    
+#    #overriding defaultZone(magic port : 8761) for eureka-server
+#    service-url:
+#      defaultZone: http://localhost:9002/eureka/
+#  instance:
+#    prefer-ip-address: true
 
 
 #enabling tracing pattern for distributed transactions   

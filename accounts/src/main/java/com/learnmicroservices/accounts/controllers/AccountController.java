@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.learnmicroservices.accounts.dto.AccountContactInfo;
 import com.learnmicroservices.accounts.dto.CustomerDto;
 import com.learnmicroservices.accounts.services.IAccountService;
 
@@ -26,6 +27,9 @@ public class AccountController {
 	
 	@Autowired
 	private IAccountService accountService;
+	
+	@Autowired
+	private AccountContactInfo accountContactInfo;
 	
 	@PostMapping("/create")
 	@ResponseStatus(code = HttpStatus.CREATED)
@@ -55,5 +59,11 @@ public class AccountController {
 		return accountService.deleteAccount(mobileNumber);
 	}
 	
+	
+	
+	@GetMapping("contact-info")
+	public AccountContactInfo getContactInfo() {
+		return accountContactInfo;
+	}
 
 }

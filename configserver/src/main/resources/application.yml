@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: configserver
+  cloud:
+    config:
+      server:
+        git:
+          default-label: main #branch name
+          uri: "https://github.com/akhilgolla05/34-config-serevr" 
+          #if it is a private repo - provide username and password 
+#          password: 
+#          username:
+
+          #when ever your request received, it will pull config to your local  
+          force-pull: true
+          timeout: 100
+          
+server:
+  port: 9001
+  
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        
+        

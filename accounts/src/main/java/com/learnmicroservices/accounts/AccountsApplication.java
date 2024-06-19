@@ -2,9 +2,12 @@ package com.learnmicroservices.accounts;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
+
+import com.learnmicroservices.accounts.dto.AccountContactInfo;
 
 import feign.micrometer.MicrometerCapability;
 import io.micrometer.core.instrument.MeterRegistry;
@@ -12,6 +15,9 @@ import io.micrometer.core.instrument.MeterRegistry;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
+
+//to enable config properties - at start-up all the properties will be loaded in below class
+@EnableConfigurationProperties(AccountContactInfo.class)
 public class AccountsApplication {
 
 	public static void main(String[] args) {

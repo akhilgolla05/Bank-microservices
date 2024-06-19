@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.learnmicroservices.accounts.dto.LoanDto;
 
 
-
-@FeignClient(name = "LOANS") // it routes to cards application through eureka-server
+//implementing fall-back - whenever Loans Application is down, implements LoanFallBack 
+@FeignClient(name = "LOANS", fallback = LoansFallBack.class) // it routes to cards application through eureka-server
 
 /*
  * cards may run on multiple port-numbers, to handle the request - internally uses ROUND-ROBIN algo

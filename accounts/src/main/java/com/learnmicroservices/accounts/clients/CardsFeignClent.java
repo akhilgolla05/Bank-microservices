@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.learnmicroservices.accounts.dto.CardDto;
 
 
-@FeignClient(name = "CARDS") // it routes to cards application through eureka-server
+@FeignClient(name = "CARDS", fallback = CardsFallBack.class) // it routes to cards application through eureka-server
 
 /*
  * cards may run on multiple port-numbers, to handle the request - internally uses ROUND-ROBIN algo

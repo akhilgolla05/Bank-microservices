@@ -3,6 +3,7 @@ org.springframework.ide.eclipse.boot.wizard.PopularityTracker.actuator=4
 org.springframework.ide.eclipse.boot.wizard.PopularityTracker.cloud-eureka=3
 org.springframework.ide.eclipse.boot.wizard.PopularityTracker.cloud-eureka-server=3
 org.springframework.ide.eclipse.boot.wizard.PopularityTracker.cloud-feign=2
+org.springframework.ide.eclipse.boot.wizard.PopularityTracker.cloud-resilience4j=1
 org.springframework.ide.eclipse.boot.wizard.PopularityTracker.data-jpa=1
 org.springframework.ide.eclipse.boot.wizard.PopularityTracker.distributed-tracing=4
 org.springframework.ide.eclipse.boot.wizard.PopularityTracker.h2=1
